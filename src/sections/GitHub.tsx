@@ -41,32 +41,54 @@ interface GitHubTelemetryData {
   total_forks: number;
   html_url: string;
   avatar_url: string;
+  dominant_language?: string;
+  dominant_percentage?: number;
   language_distribution: Record<string, LanguageDistributionItem>;
   recent_activity: ActivityItem[];
+  isLive?: boolean;
+  cached?: boolean;
+  fallback?: boolean;
 }
 
 const DEFAULT_GITHUB_DATA: GitHubTelemetryData = {
   username: 'Someshx98',
   name: 'Somesh Chandra Behera',
   bio: 'AI/ML Engineer · 3rd Year B.Tech CSE @ VSSUT Burla',
-  public_repos: 11,
+  public_repos: 12,
   followers: 0,
   following: 0,
   total_stars: 0,
   total_forks: 0,
   html_url: 'https://github.com/Someshx98',
   avatar_url: 'https://github.com/Someshx98.png',
+  dominant_language: 'Python',
+  dominant_percentage: 65.8,
   language_distribution: {
     Python: { bytes: 260840, percentage: 65.8 },
     JupyterNotebook: { bytes: 86450, percentage: 21.8 },
+    'Jupyter Notebook': { bytes: 86450, percentage: 21.8 },
     WebAndOther: { bytes: 49200, percentage: 12.4 },
   },
   recent_activity: [
     {
       type: 'PushEvent',
       repo: 'Someshx98/LeetCode-365Days',
-      date: '2026-10-11T01:31:35Z',
-      message: 'Problem Number Renaming & daily algorithmic benchmarks',
+      date: '2026-11-05T19:13:57Z',
+      message: 'Continuous algorithmic benchmarks & daily problem solving',
+      author: 'Someshx98',
+    },
+    {
+      type: 'PushEvent',
+      repo: 'Someshx98/my-portfolio',
+      date: '2026-11-04T18:54:19Z',
+      message: 'Update portfolio deployment configuration and telemetry',
+      author: 'Someshx98',
+    },
+    {
+      type: 'PushEvent',
+      repo: 'Someshx98/LeetCode-365Days',
+      date: '2026-11-02T19:40:42Z',
+      message: 'Algorithmic benchmarks and problem solving solutions',
       author: 'Someshx98',
     },
     {
@@ -83,49 +105,58 @@ const DEFAULT_GITHUB_DATA: GitHubTelemetryData = {
       message: 'Updated app and engine logic',
       author: 'Someshx98',
     },
-    {
-      type: 'PushEvent',
-      repo: 'Someshx98/titanic-eda',
-      date: '2026-07-23T19:35:19Z',
-      message: 'Move project files to repo root & feature engineering notebook',
-      author: 'Someshx98',
-    },
-    {
-      type: 'PushEvent',
-      repo: 'Someshx98/Data-Quality-Analyzer',
-      date: '2026-06-21T08:34:08Z',
-      message: 'Added the Project code files and modular analyzer',
-      author: 'Someshx98',
-    },
   ],
 };
 
 export const GitHubSection: React.FC = () => {
   const [data, setData] = useState<GitHubTelemetryData>(DEFAULT_GITHUB_DATA);
   const [loading, setLoading] = useState<boolean>(false);
-  const [lastSynced, setLastSynced] = useState<string>('Live Synced');
+  const [lastSynced, setLastSynced] = useState<string>('Live Sync');
+  const [syncStatus, setSyncStatus] = useState<'live' | 'cached' | 'syncing' | 'error'>('live');
+  const [syncError, setSyncError] = useState<string | null>(null);
+  const inFlightRef = React.useRef(false);
 
   const fetchGitHubData = async (isManual = false) => {
+    if (inFlightRef.current) return;
+    inFlightRef.current = true;
     try {
       setLoading(true);
+      setSyncStatus('syncing');
+      setSyncError(null);
       const res = await fetch(`/api/github${isManual ? '?refresh=true' : ''}`);
       if (res.ok) {
         const json = await res.json();
         if (json && json.username) {
           setData(json);
           const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-          setLastSynced(`Synced ${time}`);
+          if (json.isLive) {
+            setSyncStatus('live');
+            setLastSynced(`Synced ${time}`);
+          } else {
+            setSyncStatus('cached');
+            setLastSynced(`Cached ${time}`);
+          }
         }
+      } else {
+        setSyncStatus('error');
+        setSyncError('Remote GitHub telemetry gateway returned non-200 status. Preserving cached data.');
       }
     } catch (e) {
-      // Keeps graceful fallback
+      setSyncStatus('error');
+      setSyncError('Network disconnect while updating GitHub telemetry. Verified cached data active.');
     } finally {
       setLoading(false);
+      inFlightRef.current = false;
     }
   };
 
   useEffect(() => {
     fetchGitHubData();
+    // Auto-refresh every 30 minutes
+    const interval = setInterval(() => {
+      fetchGitHubData();
+    }, 30 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const formatDate = (dateStr: string) => {
@@ -160,19 +191,29 @@ export const GitHubSection: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-3 font-mono text-xs">
-              <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0B0F14] border border-[#1F2937] text-[11px] text-[#22C55E]">
-                <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
-                <span>{lastSynced}</span>
+              <div className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0B0F14] border border-[#1F2937] text-[11px] ${
+                syncStatus === 'live' ? 'text-[#22C55E]' :
+                syncStatus === 'cached' ? 'text-[#EAB308]' :
+                syncStatus === 'error' ? 'text-[#EF4444]' :
+                'text-[#FFD43B]'
+              }`}>
+                <span className={`w-2 h-2 rounded-full ${
+                  syncStatus === 'live' ? 'bg-[#22C55E]' :
+                  syncStatus === 'cached' ? 'bg-[#EAB308]' :
+                  syncStatus === 'error' ? 'bg-[#EF4444]' :
+                  'bg-[#FFD43B]'
+                } animate-pulse`} />
+                <span>{loading ? 'Syncing...' : lastSynced}</span>
               </div>
 
               <button
                 onClick={() => fetchGitHubData(true)}
                 disabled={loading}
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded border border-[#1F2937] bg-[#070A0E] text-[#94A3B8] hover:text-[#FFD43B] hover:border-[#FFD43B] transition-colors cursor-pointer"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded border border-[#1F2937] bg-[#070A0E] text-[#94A3B8] hover:text-[#FFD43B] hover:border-[#FFD43B] transition-colors cursor-pointer disabled:opacity-50"
                 title="Refresh GitHub telemetry"
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-[#FFD43B]' : ''}`} />
-                <span className="hidden md:inline">Sync</span>
+                <span className="hidden md:inline">{loading ? 'Syncing...' : 'Sync'}</span>
               </button>
 
               <a
@@ -187,6 +228,24 @@ export const GitHubSection: React.FC = () => {
               </a>
             </div>
           </div>
+
+          {/* Sync Warning / Error Banner (if any) */}
+          {syncError && (
+            <div className="px-4 sm:px-6 py-2 bg-[#EF4444]/10 border-b border-[#EF4444]/30 flex items-center justify-between font-mono text-xs text-[#EF4444]">
+              <div className="flex items-center gap-2">
+                <span className="font-bold">[!]</span>
+                <span>{syncError}</span>
+              </div>
+              <button
+                type="button"
+                disabled={loading}
+                onClick={() => fetchGitHubData(true)}
+                className="underline hover:text-white cursor-pointer ml-3 shrink-0 disabled:opacity-50"
+              >
+                {loading ? 'Retrying...' : 'Retry'}
+              </button>
+            </div>
+          )}
 
           <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
             {/* Top Telemetry Stats Grid */}
@@ -227,10 +286,10 @@ export const GitHubSection: React.FC = () => {
                   <Code2 className="w-3.5 h-3.5 text-[#38BDF8]" />
                 </div>
                 <div className="text-3xl font-mono font-bold text-[#38BDF8] tracking-tight">
-                  Python
+                  {data.dominant_language || 'Python'}
                 </div>
                 <div className="text-[11px] font-mono text-[#94A3B8] mt-1.5">
-                  ~65.8% of tracked volume
+                  ~{data.dominant_percentage || data.language_distribution.Python?.percentage || 65.8}% of tracked volume
                 </div>
               </div>
 

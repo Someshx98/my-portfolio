@@ -79,105 +79,105 @@ function formatTimeAgo(timestamp: number): string {
 const DEFAULT_STATS: LeetCodeStats = {
   username: 'PtVRqr4rhF',
   profileUrl: 'https://leetcode.com/u/PtVRqr4rhF/',
-  totalSolved: '125',
-  solvedNumber: 125,
-  totalQuestions: 4073,
+  totalSolved: '151',
+  solvedNumber: 151,
+  totalQuestions: 4101,
   acceptanceRate: '82.8%',
   acceptanceRateNumber: 82.8,
-  totalSubmissions: 169,
-  acceptedSubmissions: 140,
-  ranking: 1416809,
-  rankingDisplay: '#1,416,809',
-  streak: 40,
-  totalActiveDays: 55,
+  totalSubmissions: 200,
+  acceptedSubmissions: 166,
+  ranking: 1192080,
+  rankingDisplay: '#1,192,080',
+  streak: 65,
+  totalActiveDays: 74,
   contestRating: null,
   contestRanking: null,
   contestAttended: 0,
   contestStatus: 'Unrated (0 Contests Attended)',
   recentSubmissions: [
     {
-      id: '1589230192',
-      title: 'Reverse Degree of a String',
-      titleSlug: 'reverse-degree-of-a-string',
-      timestamp: 1728610295,
-      url: 'https://leetcode.com/problems/reverse-degree-of-a-string/',
+      id: '2190316054',
+      title: 'Find the Distance Value Between Two Arrays',
+      titleSlug: 'find-the-distance-value-between-two-arrays',
+      timestamp: 1793906026,
+      url: 'https://leetcode.com/problems/find-the-distance-value-between-two-arrays/',
     },
     {
-      id: '1588102384',
-      title: 'Sum of Squares of Special Elements',
-      titleSlug: 'sum-of-squares-of-special-elements',
-      timestamp: 1728523910,
-      url: 'https://leetcode.com/problems/sum-of-squares-of-special-elements/',
+      id: '2189592173',
+      title: 'Minimum Operations to Make Elements Within K Subarrays Equal',
+      titleSlug: 'minimum-operations-to-make-elements-within-k-subarrays-equal',
+      timestamp: 1793817455,
+      url: 'https://leetcode.com/problems/minimum-operations-to-make-elements-within-k-subarrays-equal/',
     },
     {
-      id: '1587091230',
-      title: 'Divisible and Non-divisible Sums Difference',
-      titleSlug: 'divisible-and-non-divisible-sums-difference',
-      timestamp: 1728437520,
-      url: 'https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/',
+      id: '2188842386',
+      title: 'Minimum Moves to Equal Array Elements III',
+      titleSlug: 'minimum-moves-to-equal-array-elements-iii',
+      timestamp: 1793729230,
+      url: 'https://leetcode.com/problems/minimum-moves-to-equal-array-elements-iii/',
     },
     {
-      id: '1586012390',
-      title: 'Minimum Number of Chairs in a Waiting Room',
-      titleSlug: 'minimum-number-of-chairs-in-a-waiting-room',
-      timestamp: 1728351130,
-      url: 'https://leetcode.com/problems/minimum-number-of-chairs-in-a-waiting-room/',
+      id: '2188071727',
+      title: 'Minimum Moves to Equal Array Elements II',
+      titleSlug: 'minimum-moves-to-equal-array-elements-ii',
+      timestamp: 1793648426,
+      url: 'https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/',
     },
     {
-      id: '1584920194',
-      title: 'Find the Child Who Has the Ball After K Seconds',
-      titleSlug: 'find-the-child-who-has-the-ball-after-k-seconds',
-      timestamp: 1728264740,
-      url: 'https://leetcode.com/problems/find-the-child-who-has-the-ball-after-k-seconds/',
+      id: '2187255647',
+      title: 'Minimum Moves to Equal Array Elements',
+      titleSlug: 'minimum-moves-to-equal-array-elements',
+      timestamp: 1793560073,
+      url: 'https://leetcode.com/problems/minimum-moves-to-equal-array-elements/',
     },
   ],
   categories: {
     easy: {
-      solved: 64,
-      total: 969,
-      submissions: 87,
-      accepted: 71,
-      acceptanceRate: '81.6%',
+      solved: 72,
+      total: 975,
+      submissions: 95,
+      accepted: 79,
+      acceptanceRate: '83.2%',
       color: '#22C55E',
     },
     medium: {
-      solved: 51,
-      total: 2124,
-      submissions: 66,
-      accepted: 55,
-      acceptanceRate: '83.3%',
+      solved: 63,
+      total: 2139,
+      submissions: 82,
+      accepted: 67,
+      acceptanceRate: '81.7%',
       color: '#FFD43B',
     },
     hard: {
-      solved: 10,
-      total: 980,
-      submissions: 16,
-      accepted: 14,
-      acceptanceRate: '87.5%',
+      solved: 16,
+      total: 987,
+      submissions: 23,
+      accepted: 20,
+      acceptanceRate: '87.0%',
       color: '#EF4444',
     },
   },
   languages: [
-    { languageName: 'Python3', problemsSolved: 55 },
+    { languageName: 'Python3', problemsSolved: 81 },
     { languageName: 'C++', problemsSolved: 36 },
     { languageName: 'Pandas', problemsSolved: 36 },
     { languageName: 'MySQL', problemsSolved: 1 },
   ],
   topTopics: [
-    { name: 'Arrays', count: 65 },
+    { name: 'Arrays', count: 78 },
     { name: 'Database', count: 37 },
-    { name: 'Strings', count: 24 },
-    { name: 'Two Pointers', count: 15 },
-    { name: 'Math', count: 14 },
-    { name: 'Hash Table', count: 13 },
-    { name: 'Stack', count: 13 },
+    { name: 'Strings', count: 30 },
+    { name: 'Two Pointers', count: 18 },
+    { name: 'Math', count: 16 },
+    { name: 'Hash Table', count: 15 },
+    { name: 'Stack', count: 14 },
     { name: 'Backtracking', count: 12 },
-    { name: 'Dynamic Programming', count: 11 },
-    { name: 'Sorting', count: 11 },
-    { name: 'Binary Search', count: 9 },
-    { name: 'Divide & Conquer', count: 6 },
-    { name: 'Matrix', count: 6 },
-    { name: 'Bit Manipulation', count: 5 },
+    { name: 'Dynamic Programming', count: 12 },
+    { name: 'Sorting', count: 12 },
+    { name: 'Binary Search', count: 10 },
+    { name: 'Divide & Conquer', count: 7 },
+    { name: 'Matrix', count: 7 },
+    { name: 'Bit Manipulation', count: 6 },
     { name: 'Greedy', count: 5 },
   ],
 };
@@ -187,10 +187,15 @@ export const LeetCode: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [syncError, setSyncError] = useState<string | null>(null);
   const [lastSyncLabel, setLastSyncLabel] = useState<string>('Live Sync');
+  const [syncStatus, setSyncStatus] = useState<'live' | 'cached' | 'syncing' | 'error'>('live');
+  const inFlightRef = React.useRef(false);
 
   const fetchStats = async (isManual = false) => {
+    if (inFlightRef.current) return;
+    inFlightRef.current = true;
     try {
       setLoading(true);
+      setSyncStatus('syncing');
       setSyncError(null);
       const res = await fetch(`/api/leetcode${isManual ? '?refresh=true' : ''}`);
       if (res.ok) {
@@ -198,15 +203,24 @@ export const LeetCode: React.FC = () => {
         if (data && data.categories) {
           setStats(data);
           const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-          setLastSyncLabel(`Synced ${timeStr}`);
+          if (data.isLive) {
+            setSyncStatus('live');
+            setLastSyncLabel(`Synced ${timeStr}`);
+          } else {
+            setSyncStatus('cached');
+            setLastSyncLabel(`Cached ${timeStr}`);
+          }
         }
       } else {
+        setSyncStatus('error');
         setSyncError('Remote LeetCode telemetry gateway returned non-200 status. Preserving cached data.');
       }
     } catch (err) {
+      setSyncStatus('error');
       setSyncError('Network disconnect while updating LeetCode data. Verified cached telemetry active.');
     } finally {
       setLoading(false);
+      inFlightRef.current = false;
     }
   };
 
@@ -219,7 +233,7 @@ export const LeetCode: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const totalCatalog = stats.totalQuestions || 4073;
+  const totalCatalog = stats.totalQuestions || 4101;
   const easyPct = ((stats.categories.easy.solved / stats.categories.easy.total) * 100).toFixed(1);
   const medPct = ((stats.categories.medium.solved / stats.categories.medium.total) * 100).toFixed(1);
   const hardPct = ((stats.categories.hard.solved / stats.categories.hard.total) * 100).toFixed(1);
@@ -253,9 +267,19 @@ export const LeetCode: React.FC = () => {
 
             <div className="flex items-center gap-3 font-mono text-xs">
               {/* Telemetry live status */}
-              <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0B0F14] border border-[#1F2937] text-[11px] text-[#22C55E]">
-                <span className={`w-2 h-2 rounded-full ${loading ? 'bg-[#FFD43B]' : 'bg-[#22C55E]'} animate-pulse`} />
-                <span>{lastSyncLabel}</span>
+              <div className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0B0F14] border border-[#1F2937] text-[11px] ${
+                syncStatus === 'live' ? 'text-[#22C55E]' :
+                syncStatus === 'cached' ? 'text-[#EAB308]' :
+                syncStatus === 'error' ? 'text-[#EF4444]' :
+                'text-[#FFD43B]'
+              }`}>
+                <span className={`w-2 h-2 rounded-full ${
+                  syncStatus === 'live' ? 'bg-[#22C55E]' :
+                  syncStatus === 'cached' ? 'bg-[#EAB308]' :
+                  syncStatus === 'error' ? 'bg-[#EF4444]' :
+                  'bg-[#FFD43B]'
+                } animate-pulse`} />
+                <span>{loading ? 'Syncing...' : lastSyncLabel}</span>
               </div>
 
               {/* Refresh Button */}
@@ -292,10 +316,11 @@ export const LeetCode: React.FC = () => {
               </div>
               <button
                 type="button"
+                disabled={loading}
                 onClick={() => fetchStats(true)}
-                className="underline hover:text-white cursor-pointer ml-3 shrink-0"
+                className="underline hover:text-white cursor-pointer ml-3 shrink-0 disabled:opacity-50"
               >
-                Retry
+                {loading ? 'Retrying...' : 'Retry'}
               </button>
             </div>
           )}
