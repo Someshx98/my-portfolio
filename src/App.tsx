@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Navigation } from './components/Navigation';
 import { CommandTerminal } from './components/CommandTerminal';
 import { Hero } from './sections/Hero';
@@ -111,6 +112,9 @@ export default function App() {
         <span className="hidden sm:inline">&gt;_ CLI</span>
         <span className="text-[10px] text-[#4B5563] hidden sm:inline">[Cmd+K]</span>
       </button>
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
